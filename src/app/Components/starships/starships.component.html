@@ -1,0 +1,20 @@
+
+<main>
+    <div class="container cust-body">
+        <div class="row">
+            <div class="col-12">
+                <!-- <ng-container @if (starships.length > 0)> -->
+                  <ng-container *ngIf="starships.length > 0">
+                    <ul>
+                      <!-- <ng-container @for (starship of starships, track index)> -->
+                        <ng-container *ngFor="let starship of starships; let i = index">
+                        <li>
+                          {{ starship.name }} <br> ({{ starship.model }})
+                        </li>
+                      </ng-container>
+                    </ul>
+                  </ng-container>
+            </div>
+        </div>
+    </div>
+  </main>
