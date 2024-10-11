@@ -1,0 +1,64 @@
+<header>
+
+    <div class="container-fluid">
+
+        <div class="row align-items-center">
+
+            <nav class="navbar">
+
+                <div class="col d-flex justify-content-start ms-3">
+                    <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <div class="col d-flex justify-content-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/star-wars-logo.jpg" alt="Star Wars Logo" width="190">
+                    </a>
+                </div>
+
+                <div class="col d-flex justify-content-end me-3">
+                    <ul class="navbar-nav flex-row">
+                        <li class="nav-item">
+                            <a class="nav-link cust-nav-link py-0" href="#">LOG IN</a>
+                        </li>
+                        <div class="slash mx-2 my-auto">//</div>
+                        <li class="nav-item">
+                            <a class="nav-link cust-nav-link py-0" href="#">SIGN UP</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+
+        </div>
+
+        <div class="row">
+
+            <nav class="navbar cust-navbar justify-content-center">
+               
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item me-4 cust-nav-item-1">
+                        <a class="nav-link py-0 ms-3" href="#">HOME</a>
+                    </li>
+                    <li class="nav-item cust-nav-item-2" [routerLinkActive]="['active-border-bottom']" 
+                         [routerLinkActiveOptions]="{exact:true}">
+                        <a class="nav-link py-0 ms-3 me-3" [routerLink]="['/starships']"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" 
+                        >STARSHIPS</a>
+
+                        <!-- (routerLinkActive)="isActiveStarships = $event" -->
+
+
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+</header>

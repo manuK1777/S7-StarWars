@@ -1,23 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "./Components/header/header.component";
+import { StarshipsComponent } from "./Components/starships/starships.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet ],
+  imports: [RouterOutlet, HeaderComponent, StarshipsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent  {
   title = 'S7-StarWars';
 
-  // starships: any[] = [];
-
-  // constructor(private getStarshipService: GetStarshipService) {}
-
-  // ngOnInit(): void {
-  //   this.getStarshipService.getStarship().subscribe((data) => {
-  //     this.starships = data;
-  //   });
-  // }
 }

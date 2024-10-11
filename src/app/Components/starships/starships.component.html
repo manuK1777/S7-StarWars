@@ -1,20 +1,21 @@
+<div class="container">
 
-<main>
-    <div class="container cust-body">
-        <div class="row">
-            <div class="col-12">
-                <!-- <ng-container @if (starships.length > 0)> -->
-                  <ng-container *ngIf="starships.length > 0">
-                    <ul>
-                      <!-- <ng-container @for (starship of starships, track index)> -->
-                        <ng-container *ngFor="let starship of starships; let i = index">
-                        <li>
-                          {{ starship.name }} <br> ({{ starship.model }})
-                        </li>
-                      </ng-container>
-                    </ul>
-                  </ng-container>
-            </div>
-        </div>
+  <div class="row">
+
+    <div class="col">
+
+        @for (starship of starships; track $index) {
+        <ul>
+          
+            <li class="starships">
+              <div class="starship-name">{{ starship.name | uppercase }} </div>
+              <div class="starship-model">({{ starship.model }})</div>
+            </li>
+        </ul>
+      }
+   
     </div>
-  </main>
+
+  </div>
+
+</div>

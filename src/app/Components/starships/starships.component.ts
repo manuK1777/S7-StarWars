@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'
-//import { HttpClientModule } from '@angular/common/http';
 import { GetStarshipService } from '../../Services/get-starship.service';
 
 @Component({
