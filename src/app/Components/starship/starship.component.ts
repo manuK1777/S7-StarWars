@@ -50,4 +50,13 @@ export class StarshipComponent implements OnInit {
     }
   }
 
+  // In your component's class
+formatCostInCredits(cost: string): string {
+  if (typeof cost === 'string' && cost.match(/^\d+(\.\d+)?$/)) {
+    return parseInt(cost).toLocaleString();
+  } else {
+    return cost;
+  }
+}
+
 }

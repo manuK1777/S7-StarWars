@@ -26,10 +26,10 @@
                     Iure itaque rerum ipsam incidunt quasi?
                 </p>
                 <p>Model: {{ starship.model }}</p>
-                <p>Cost in credits: {{ starship.cost_in_credits }}</p>  <!-- | number:'1.0-0' handle if unknown--> 
-                <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
+                <p>Cost in credits: {{ formatCostInCredits(starship.cost_in_credits) }}</p>               
+                 <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
                 <p>Manufacturer: {{ starship.manufacturer }}</p>
-                 <p>length: {{ starship.length }}</p>  <!-- | number:'1.2-2'  -->
+                 <p>length: {{ starship?.length }}</p>  <!-- | number:'1.2-2' : 'es-ES'  -->
                 <p>Crew: {{starship.crew}}</p>
             </div>
         </div>
