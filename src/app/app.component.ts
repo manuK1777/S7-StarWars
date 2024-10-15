@@ -5,6 +5,7 @@ import { StarshipsComponent } from "./Components/starships/starships.component";
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
+
 registerLocaleData(localeEs);
 
 @Component({

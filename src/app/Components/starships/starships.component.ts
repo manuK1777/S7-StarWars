@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'
 import { GetStarshipService } from '../../Services/get-starship.service';
@@ -14,6 +14,9 @@ export class StarshipsComponent implements OnInit {
 
   starships: any[] = [];
   errorMessage: string = '';
+  isLoading = false;
+  currentPage: number = 1;
+  finalPage: number = 4;
 
   constructor(private getStarshipService: GetStarshipService, private router: Router) {}
 
@@ -22,20 +25,37 @@ export class StarshipsComponent implements OnInit {
     this.loadStarships();
   }
 
-  loadStarships() {
-    this.getStarshipService.getStarships().subscribe({
+  loadStarships(): void {
+    if (this.isLoading) return; 
+    this.isLoading = true;
+
+    this.getStarshipService.getStarships(this.currentPage).subscribe({
       next: (data) => {
-        this.starships = data;
+        this.starships = [...this.starships, ...data]; 
+        this.currentPage++; 
       },
       error: (error) => {
         this.errorMessage = error.message;
       },
       complete: () => {
+        this.isLoading = false;
         console.log('Completed');
+        console.log(this.starships);
       }
     });
   }
 
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+    const scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+    const scrollPosition = scrollTop + clientHeight;
+
+    if (scrollPosition >= scrollHeight - 100 && this.currentPage <= this.finalPage) {
+      this.loadStarships(); 
+    }
+  }
   viewStarshipDetails(starshipUrl: string | undefined): void {
 
     if (starshipUrl) {

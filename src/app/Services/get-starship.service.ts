@@ -14,8 +14,9 @@ export class GetStarshipService {
 
   constructor(private http: HttpClient) {}
 
-  getStarships(): Observable<Starship[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
+  getStarships(page: number = 1): Observable<Starship[]> {
+    const paginatedUrl = `${this.apiUrl}?page=${page}`;
+    return this.http.get<any>(paginatedUrl).pipe(
       map(response => response.results.map((starship: any) => ({
         name: starship.name,
         model: starship.model,
