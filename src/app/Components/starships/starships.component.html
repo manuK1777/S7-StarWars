@@ -4,10 +4,16 @@
 
     <div class="col">
 
+      @if(errorMessage) {
+      <div class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+    }
+
         @for (starship of starships; track $index) {
         <ul>
           
-            <li class="starships">
+            <li class="starships" (click)="viewStarshipDetails(starship.url)">
               <div class="starship-name">{{ starship.name | uppercase }} </div>
               <div class="starship-model">({{ starship.model }})</div>
             </li>

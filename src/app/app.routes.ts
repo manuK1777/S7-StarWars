@@ -1,9 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 import { StarshipsComponent } from './Components/starships/starships.component';
+import { StarshipComponent } from './Components/starship/starship.component';
 
 export const routes: Routes = [
-   // { path: '', redirectTo: '/home', pathMatch: 'full' },
+    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'starships', component: StarshipsComponent,  }, //canActivate: [authGuard]
+    { path: 'starship/:id', component: StarshipComponent }
 ];
 
 export class AppRoutingModule {}
