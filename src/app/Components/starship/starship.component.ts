@@ -34,23 +34,7 @@ export class StarshipComponent implements OnInit {
   getImageUrl(): string {
     return `https://starwars-visualguide.com/assets/img/starships/${this.starshipId}.jpg`;
   }
-  setImageSrc(event: any, starshipId: number) {
-
-    const missingStarshipImages: Record<number, string> = {
-      2: 'assets/img/2_crv90_corvette.jpg',
-      3: 'assets/img/3_Star-Destroyer.jpg',
-      13: 'assets/img/13_TIE_Advanced.jpg',
-      17: 'assets/img/17_rebel_transport.jpg'
-    } 
-
-    if ([2, 3, 13, 17].includes(starshipId)) {
-      event.target.src = missingStarshipImages[starshipId];
-    } else {
-      event.target.src = this.getImageUrl();
-    }
-  }
-
-  // In your component's class
+ 
 formatCostInCredits(cost: string): string {
   if (typeof cost === 'string' && cost.match(/^\d+(\.\d+)?$/)) {
     return parseInt(cost).toLocaleString();

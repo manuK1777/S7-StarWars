@@ -1,38 +1,38 @@
 
 @if (starship) {
 
-    <div class="container">
+    <div class="container-fluid cust-background">
 
-        <div class="row">
-            
-                <header class="cust-starship-header mb-4">
-                    <h5 class="mt-2">STARSHIP</h5>
-                </header>
-            
-        </div>
-
-        <div class="row">
-            <div class="col">
-                @if(starship) {
-                    <!-- @if(getImageUrl() == 1) -->
-                <img [src]="getImageUrl()" (error)="starshipId !== null ? setImageSrc($event, starshipId) : null" width="600px" alt="Starship Image">
-                }
+       <div class="container">
+            <div class="row">
+                
+                    <header class="cust-starship-header mb-4">
+                        <h5 class="mt-2">STARSHIP</h5>
+                    </header>
+                
             </div>
-            <div class="col">
-                <h4>{{ starship.name }}</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Saepe deleniti reiciendis odit dolorem omnis? Dolorem minus, 
-                    esse ex iste ipsam molestiae distinctio optio aperiam. 
-                    Iure itaque rerum ipsam incidunt quasi?
-                </p>
-                <p>Model: {{ starship.model }}</p>
-                <p>Cost in credits: {{ formatCostInCredits(starship.cost_in_credits) }}</p>               
-                 <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
-                <p>Manufacturer: {{ starship.manufacturer }}</p>
-                 <p>length: {{ starship?.length }}</p>  <!-- | number:'1.2-2' : 'es-ES'  -->
-                <p>Crew: {{starship.crew}}</p>
+    
+            <div class="row">
+                <div class="col">
+                    @if(starship) {
+                  
+                    <img [src]="getImageUrl()" onerror="this.src='assets/img/default-image.jpg'" width="500px" alt="Starship Image">            }
+                </div>
+                <div class="col">
+                    <h5>{{ starship.name | uppercase }}</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Saepe deleniti reiciendis odit dolorem omnis? Dolorem minus, 
+                        esse ex iste ipsam molestiae distinctio.
+                    </p>
+                    <p>Model: {{ starship.model }}</p>
+                    <p>Cost in credits: {{ formatCostInCredits(starship.cost_in_credits) }}</p>               
+                     <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
+                    <p>Manufacturer: {{ starship.manufacturer }}</p>
+                     <p>length: {{ starship?.length }}</p>  <!-- | number:'1.2-2' : 'es-ES'  -->
+                    <p>Crew: {{starship.crew}}</p>
+                </div>
             </div>
-        </div>
+       </div>
     </div>  
 }
 
