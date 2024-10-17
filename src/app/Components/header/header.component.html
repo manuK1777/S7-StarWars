@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="col d-flex justify-content-center">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" [routerLink]="'/home'">
                         <img src="assets/star-wars-logo.jpg" alt="Star Wars Logo" width="190">
                     </a>
                 </div>
@@ -40,8 +40,11 @@
             <nav class="navbar cust-navbar justify-content-center">
                
                 <ul class="navbar-nav flex-row">
-                    <li class="nav-item me-4 cust-nav-item-1">
-                        <a class="nav-link py-0 ms-3" href="#">HOME</a>
+                    <li class="nav-item pe-4 cust-nav-item-1" [routerLinkActive]="['active-border-bottom']"
+                    [routerLinkActiveOptions]="{exact:true}">
+                        <a class="nav-link py-0 ms-3" [routerLink]="['/home']"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                        >HOME</a>
                     </li>
                     <li class="nav-item cust-nav-item-2" [routerLinkActive]="['active-border-bottom']" 
                          [routerLinkActiveOptions]="{exact:true}">
