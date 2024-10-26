@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "email": "pepe@gmail.com",
+      "password": "$2a$10$xCjUTjTySBceWaqnogeKn.APK8DxtIOcvQsyH.x5Ejs5BxBLIwW0K",
+      "name": "pepe",
+      "id": 1
+    },
+    {
+      "email": "john@pepe.com",
+      "password": "$2a$10$OiOt7KzM35ID/q7e9E5rSeO91ln8EXN88xLBjCSe9sa/CMRrUjXWe",
+      "name": "PEPE",
+      "id": 2
+    },
+    {
+      "email": "john@yahoo.es",
+      "password": "$2a$10$uIFvZyPoN/x52Up1eMg.mON4I22mSiiJ26usFcpPfxvljhHBZZGpe",
+      "name": "john",
+      "id": 3
+    },
+    {
+      "email": "rob@gmail.com",
+      "password": "$2a$10$GXPybIP4CR6hYOgDxB0nW.1YUYFex/ChvCGxubBhPr.O5lyY8qeFi",
+      "name": "rob",
+      "id": 4
+    },
+    {
+      "email": "juan@hotmail.com",
+      "password": "$2a$10$WykHoFmF.whXjj2tTPUiCOL9zuha6qfGT6aSwFAh4HZpVZkqRYkUS",
+      "name": "sdfsd",
+      "id": 5
+    },
+    {
+      "email": "george@gmail.com",
+      "password": "$2a$10$eEun8wPhxG9bK.BVLMA2ROnXIOtAGRy05l/UnMJ484On6Y.T2KnJ6",
+      "name": "george",
+      "id": 6
+    }
+  ]
+}

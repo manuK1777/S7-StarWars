@@ -21,13 +21,20 @@
 
                 <div class="col d-flex justify-content-end me-3">
                     <ul class="navbar-nav flex-row">
+                        @if (!authService.isLoggedIn()) {
                         <li class="nav-item">
-                            <a class="nav-link cust-nav-link py-0" href="#">LOG IN</a>
+                            <a class="nav-link cust-nav-link py-0" [routerLink]="['/login']">LOG IN</a>
                         </li>
                         <div class="slash mx-2 my-auto">//</div>
                         <li class="nav-item">
-                            <a class="nav-link cust-nav-link py-0" href="#">SIGN UP</a>
+                            <a class="nav-link cust-nav-link py-0" [routerLink]="['/register']">SIGN UP</a>
                         </li>
+                        } 
+                        @if (authService.isLoggedIn()) {
+                        <li class="nav-item">
+                            <a class="nav-link cust-nav-link py-0" (click)="logout()" [routerLink]="['/home']">LOG OUT</a>
+                        </li>
+                        }
                     </ul>
                 </div>
 
@@ -38,19 +45,17 @@
         <div class="row">
 
             <nav class="navbar cust-navbar justify-content-center">
-               
+
                 <ul class="navbar-nav flex-row">
                     <li class="nav-item pe-4 cust-nav-item-1" [routerLinkActive]="['active-border-bottom']"
-                    [routerLinkActiveOptions]="{exact:true}">
-                        <a class="nav-link py-0 ms-3" [routerLink]="['/home']"
-                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-                        >HOME</a>
+                        [routerLinkActiveOptions]="{exact:true}">
+                        <a class="nav-link py-0 ms-3" [routerLink]="['/home']" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">HOME</a>
                     </li>
-                    <li class="nav-item cust-nav-item-2" [routerLinkActive]="['active-border-bottom']" 
-                         [routerLinkActiveOptions]="{exact:true}">
-                        <a class="nav-link py-0 ms-3 me-3" [routerLink]="['/starships']"
-                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" 
-                        >STARSHIPS</a>
+                    <li class="nav-item cust-nav-item-2" [routerLinkActive]="['active-border-bottom']"
+                        [routerLinkActiveOptions]="{exact:true}">
+                        <a class="nav-link py-0 ms-3 me-3" [routerLink]="['/starships']" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">STARSHIPS</a>
                     </li>
                 </ul>
 

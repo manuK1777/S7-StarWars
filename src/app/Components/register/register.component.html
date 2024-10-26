@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row d-flex justify-content-center mt-4">
+
+        <div class="col-6">
+            <h3>SIGN UP</h3>
+
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+                <div>
+                    <label for="name">Name</label>
+                    <input id="name" type="text" formControlName="name" class="form-control" />
+
+                    @if (registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched) {
+
+                    <div class="text-danger">
+                        Name is required.
+                    </div>
+
+                    }
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" formControlName="email" class="form-control" />
+
+                    @if (registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched) {
+
+                    <div class="text-danger">
+
+                        @if (registrationForm.get('email')?.errors?.['required']) {
+                        <span>Email is required.</span>
+                        }
+                        @if (registrationForm.get('email')?.errors?.['email']) {
+                        <span>Invalid email format.</span>
+                        }
+
+                    </div>
+                    }
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" formControlName="password" class="form-control"/>
+
+                    @if (registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched) {
+
+                    <div class="text-danger">
+
+                        @if (registrationForm.get('password')?.errors?.['required']) {
+                        <span>Password is required.</span>
+                        }
+                        @if (registrationForm.get('password')?.errors?.['minlength']) {
+                        <span>Password must be at least 6 characters long.</span>
+                        }
+
+                    </div>
+                    }
+                </div>
+
+                <button type="submit" [disabled]="registrationForm.invalid" class="btn btn-primary mt-3 cust-btn">SIGN UP</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
