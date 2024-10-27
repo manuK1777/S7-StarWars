@@ -10,4 +10,5 @@ export interface Starship {
     crew?: string;
     url?: string;
     pilots?: string[];
+    films?: string[];
   }
