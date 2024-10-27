@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { GetStarshipService } from '../../Services/get-starship.service';
 import { DecimalPipe } from '@angular/common';
+import { PilotsComponent } from "../pilots/pilots.component";
 
 
 @Component({
   selector: 'app-starship',
   standalone: true,
-  imports: [ CommonModule, DecimalPipe ],
+  imports: [CommonModule, DecimalPipe, PilotsComponent],
   templateUrl: './starship.component.html',
   styleUrl: './starship.component.scss'
 })
 export class StarshipComponent implements OnInit {
   starship: any;
   starshipId: number | null = null;
+  isLoading = false;
+  errorMessage: string = '';
 
   constructor(private route: ActivatedRoute, private getStarshipService: GetStarshipService) {}
 
@@ -26,8 +29,20 @@ export class StarshipComponent implements OnInit {
   }
 
   getStarshipDetails(id: number): void {
-    this.getStarshipService.getStarship(id).subscribe((data: any) => {
-      this.starship = data;
+    if (this.isLoading) return; 
+    this.isLoading = true;
+  
+    this.getStarshipService.getStarship(id).subscribe({
+      next: (data: any) => {
+        console.log(data);  //-----------------------------
+        this.starship = data;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching starship:', error);
+        this.errorMessage = error.message;
+        this.isLoading = false;
+      }
     });
   }
 

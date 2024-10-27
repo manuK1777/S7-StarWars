@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Starship } from '../models/starship.model';
+import { Pilot } from '../models/pilots.model';
 
 
 @Injectable({
@@ -36,11 +37,26 @@ export class GetStarshipService {
         max_atmosphering_speed: starship.max_atmosphering_speed,
         manufacturer: starship.manufacturer,
         length: starship.length,
-        crew: starship.crew
+        crew: starship.crew,
+        pilots: starship.pilots,
       })),
       catchError(this.handleError)
     );
   }
+
+  getPilot(url: string): Observable<Pilot | null> {
+    return this.http.get<any>(url).pipe(
+      map(pilot => ({
+        name: pilot.name,
+        url: pilot.url
+      })),
+      catchError(error => {
+        console.error('Pilot retrieval failed', error);
+        return of(null); 
+      })
+    );
+  }
+  
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
@@ -61,8 +77,7 @@ export class GetStarshipService {
       }
     }
     
-    console.error(errorMessage);  // Log the error message
-  
+    console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
 }
 }

@@ -28,12 +28,28 @@
                     <p>Cost in credits: {{ formatCostInCredits(starship.cost_in_credits) }}</p>               
                      <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
                     <p>Manufacturer: {{ starship.manufacturer }}</p>
-                     <p>length: {{ starship?.length }}</p>  <!-- | number:'1.2-2' : 'es-ES'  -->
+                     <p>length: {{ starship?.length }}</p> 
                     <p>Crew: {{starship.crew}}</p>
                 </div>
             </div>
+
+           <app-pilots></app-pilots>
+
        </div>
     </div>  
+
+} @else if (isLoading) {
+   
+        <div>
+          Loading starships...
+        </div>
+        
 }
+
+@if (errorMessage) {
+    <div>
+      {{ errorMessage }}
+    </div>
+    }
 
    

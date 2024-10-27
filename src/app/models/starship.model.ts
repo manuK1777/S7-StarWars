@@ -1,5 +1,6 @@
-// starship.model.ts
+
 export interface Starship {
+    [x: string]: any;
     name: string;
     model: string;
     cost_in_credits?: string;
@@ -8,5 +9,5 @@ export interface Starship {
     length?: string;
     crew?: string;
     url?: string;
+    pilots?: string[];
   }
-  

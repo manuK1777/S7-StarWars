@@ -1,0 +1,46 @@
+.container-fluid {
+    height: 67hv;
+}
+
+.cust-starship-header {
+    border-top: 1px solid #4b4848;
+    border-bottom: 1px solid #4b4848;
+}
+
+h5, p {
+    color: #cac2c2;
+}
+
+h5 {
+    font-weight: 500;
+}
+
+p {
+    font-size: 0.9rem;
+}
+
+.pilot-card {
+    background-color: transparent;
+    justify-content: space-around;
+    width: auto;
+    text-align: center;
+}
+
+img {
+    border-radius: 22px;
+    z-index: 1;
+    position: relative;
+}
+
+p {
+    z-index: 1;
+    position: relative;
+    font-weight: 520;
+}
+
+.noPilots-p {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+
