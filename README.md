@@ -31,21 +31,16 @@ git clone git@github.com:manuK1777/S7-StarWars.git
 npm install
 ```
 
-3. Install JSON Server and JSON Server Auth (if not already installed):
-```bash
-npm install -D json-server@0.17.4 json-server-auth
-```
-
 ## Running the Application
 
-1. Start the Angular Application:
+1. Start the Backend:
 ```bash
-ng serve -o
+npm run start:server
 ```
 
-2. Run the Backend
+2. Start the Angular Application:
 ```bash
-npx json-server-auth db.json
+ng serve -o
 ```
 
 ## Testing
