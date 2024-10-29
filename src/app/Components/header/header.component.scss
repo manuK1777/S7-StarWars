@@ -48,6 +48,9 @@ header {
 .nav-link {
     color: #9e9898;
     font-weight: 500;
+    background-color: black;
+    z-index: 1;
+    position: relative;
 }
 
 .cust-nav-item-2 {

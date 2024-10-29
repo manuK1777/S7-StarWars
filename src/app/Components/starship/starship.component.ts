@@ -4,12 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { GetStarshipService } from '../../Services/get-starship.service';
 import { DecimalPipe } from '@angular/common';
 import { PilotsComponent } from "../pilots/pilots.component";
+import { FilmsComponent } from "../films/films.component";
 
 
 @Component({
   selector: 'app-starship',
   standalone: true,
-  imports: [CommonModule, DecimalPipe, PilotsComponent],
+  imports: [CommonModule, DecimalPipe, PilotsComponent, FilmsComponent],
   templateUrl: './starship.component.html',
   styleUrl: './starship.component.scss'
 })
@@ -34,7 +35,6 @@ export class StarshipComponent implements OnInit {
   
     this.getStarshipService.getStarship(id).subscribe({
       next: (data: any) => {
-        console.log(data);  //-----------------------------
         this.starship = data;
         this.isLoading = false;
       },

@@ -3,21 +3,20 @@ import { forkJoin, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { GetStarshipService } from '../../Services/get-starship.service';
 import { Starship } from '../../models/starship.model';
-import { Pilot } from '../../models/pilots.model';
 import { ActivatedRoute } from '@angular/router';
-
+import { Film } from '../../models/films.model';
 
 @Component({
-  selector: 'app-pilots',
+  selector: 'app-films',
   standalone: true,
   imports: [],
-  templateUrl: './pilots.component.html',
-  styleUrl: './pilots.component.scss'
+  templateUrl: './films.component.html',
+  styleUrl: './films.component.scss'
 })
-export class PilotsComponent {
+export class FilmsComponent {
 
   starship: Starship | null = null;
-  pilots: Pilot[] = [];
+  films: Film[] = [];
   errorMessage: string | null = null;
 
   constructor(
@@ -34,32 +33,32 @@ export class PilotsComponent {
       switchMap(starship => {
         this.starship = starship;
 
-        if (!starship.pilots || starship.pilots.length === 0) {
+        if (!starship.films || starship.films.length === 0) {
           return of([]); 
         }
 
-        const pilotObservables = starship.pilots.map(pilotUrl =>
-          this.getStarshipsService.getPilot(pilotUrl)
+        const filmObservables = starship.films.map((filmUrl: string) =>
+          this.getStarshipsService.getFilm(filmUrl)
         );
 
-        return forkJoin(pilotObservables);
+        return forkJoin(filmObservables);
       })
     ).subscribe({
-      next: (pilots) => {
-        this.pilots = pilots.filter((pilot): pilot is Pilot => !!pilot);
+      next: (films: (Film | null)[]) => {
+        this.films = films.filter(film => film !== null) as Film[];
       },
       error: (error) => {
-        this.errorMessage = 'Failed to load starship or pilot details';
+        this.errorMessage = 'Failed to load starship or film details';
         console.error(error);
       }
     });
   }
 
-  getPilotImageUrl(id: number): string {
-      return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+  getFilmImageUrl(id: number): string {
+    return `https://starwars-visualguide.com/assets/img/films/${id}.jpg`;
   }
 
-  getPilotIdFromUrl(url: string): number {    
+  getFilmIdFromUrl(url: string): number {    
     return parseInt(url.split('/').filter(Boolean).pop() || '0', 10);
   }
  

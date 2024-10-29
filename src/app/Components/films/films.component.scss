@@ -2,7 +2,7 @@
     height: 67hv;
 }
 
-.cust-pilots-header {
+.cust-film-header {
     border-top: 1px solid #4b4848;
     border-bottom: 1px solid #4b4848;
 }
@@ -12,7 +12,7 @@ h5 {
     font-weight: 500;
 }
 
-.pilot-card {
+.film-card {
     background-color: transparent;
     justify-content: space-around;
     width: auto;
@@ -26,6 +26,7 @@ img {
 }
 
 p {
+    color: #cac2c2;
     font-size: 0.9rem;
     background-color: black;
     z-index: 1;
@@ -33,14 +34,9 @@ p {
     font-weight: 520;
 }
 
-.noPilots-p {
-    font-weight: 500;
-    font-size: 1rem;
-}
-
 @media (max-width: 767.8px) {
 
-    .cust-pilots-container{
+    .cust-films-container{
       margin-top: -22px;
     }
 }

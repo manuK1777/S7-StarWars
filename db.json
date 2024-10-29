@@ -41,6 +41,12 @@
       "password": "$2a$10$veOimW93Awo0ocByIb9VXeqxQtw/3v.FqO77Adh0wYyx736ZOFc.K",
       "name": "lola",
       "id": 7
+    },
+    {
+      "email": "giorgio@gmail.com",
+      "password": "$2a$10$7Z/diYRrtck5mFa/NP0K8OV7LEYYgh2DxBEWnZrhqT84bwaqvLBEm",
+      "name": "giorgio",
+      "id": 8
     }
   ]
 }

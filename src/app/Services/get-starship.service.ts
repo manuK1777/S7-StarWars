@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Starship } from '../models/starship.model';
 import { Pilot } from '../models/pilots.model';
+import { Film } from '../models/films.model';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class GetStarshipService {
   }
 
   getStarship(id: number): Observable<Starship> {
-    return this.http.get<any>(`${this.apiUrl}/${id}/`).pipe(
+    return this.http.get<any>(`${this.apiUrl}${id}/`).pipe(
       map(starship => ({
         name: starship.name,
         model: starship.model,
@@ -39,6 +40,7 @@ export class GetStarshipService {
         length: starship.length,
         crew: starship.crew,
         pilots: starship.pilots,
+        films: starship.films,
       })),
       catchError(this.handleError)
     );
@@ -50,9 +52,23 @@ export class GetStarshipService {
         name: pilot.name,
         url: pilot.url
       })),
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         console.error('Pilot retrieval failed', error);
-        return of(null); 
+        return throwError(() => error);
+      })
+    );
+  }
+  
+  getFilm(url: string): Observable<Film | null> {
+    return this.http.get<any>(url).pipe(
+      map(film => ({
+        title: film.title,
+        url: film.url,
+        episode_id: film.episode_id
+      })),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Film retrieval failed', error);
+        return throwError(() => error);
       })
     );
   }

@@ -2,9 +2,14 @@
     overflow: hidden;
 }
 
-// .cust-btn {
-//     color: black;
-//     background-color:yellow;;
-//     border-color: yellow;;
-// }
+label {
+    background-color: black;
+    z-index: 1;
+    position: relative;
+}
+
+button {
+    z-index: 1;
+    position: relative;
+}
 
