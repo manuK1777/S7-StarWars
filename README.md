@@ -1,27 +1,70 @@
 # S7StarWars
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+This is an Angular 18.2.6 application that provides an interactive Star Wars-themed interface, allowing users to explore starships, characters, and films. The backend is powered by json-server with json-server-auth to handle authentication.
 
-## Development server
+## Project Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This project serves as a Star Wars exploration app where users can register, log in, and view various details about starships and characters. User authentication and authorization are managed with json-server-auth, which extends json-server to provide a mock backend API with secure routes.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- User Authentication: Register and log in to access the app.
+- Star Wars Data Exploration: View starships, films, and pilots with detailed information.
+- Form Validation: Login form with validation and error handling.
+- Routing: Navigate through various components of the app with Angular Router.
 
-## Build
+## Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    Frontend: Angular 18.2.6
+    Backend: JSON Server, JSON Server Auth
+    Styling: SASS, Bootstrap 5
 
-## Running unit tests
+## Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository:
+```bash
+git clone git@github.com:manuK1777/S7-StarWars.git
+```
 
-## Running end-to-end tests
+2. Install frontend dependencies:
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Install JSON Server and JSON Server Auth (if not already installed):
+```bash
+npm install -D json-server@0.17.4 json-server-auth
+```
+
+## Running the Application
+
+1. Start the Angular Application:
+```bash
+ng serve -o
+```
+
+2. Run the Backend
+```bash
+npx json-server-auth db.json
+```
+
+## Testing
+
+This project uses Angular’s testing utilities. Run unit tests with:
+```bash
+ng test
+```
+## Tests
+
+- Unit Tests for services: AuthService and GetStarshipService.
+
+- Component Tests for LoginComponent.
+
+- Mocked Backend Responses with HttpTestingController for isolated tests without requiring a live 
+  backend.
 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
