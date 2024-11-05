@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row d-flex justify-content-center mt-4">
 
-        <div class="col-6">
+        <div class="col-6 col-lg-5 col-md-5">
             <h3>SIGN UP</h3>
 
             <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
@@ -56,6 +56,12 @@
                     </div>
                     }
                 </div>
+
+                @if(registrationError) {
+                    <div  class="text-danger mt-3">
+                        {{ registrationError }}
+                    </div>
+                }
 
                 <button type="submit" [disabled]="registrationForm.invalid" class="btn btn-primary mt-3 cust-btn">SIGN UP</button>
             </form>

@@ -40,7 +40,6 @@ export class StarshipsComponent implements OnInit {
       complete: () => {
         this.isLoading = false;
         console.log('Completed');
-        console.log(this.starships);
       }
     });
   }

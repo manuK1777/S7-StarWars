@@ -1,3 +1,4 @@
+
 label {
     background-color: black;
     z-index: 1;
@@ -7,4 +8,14 @@ label {
 button {
     z-index: 1;
     position: relative;
+}
+
+.col-6 {
+    position: absolute;
+}
+
+.text-danger {
+    background-color: black;
+    position: relative;
+    z-index: 1;
 }

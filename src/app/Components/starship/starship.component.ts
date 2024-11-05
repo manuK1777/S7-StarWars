@@ -5,6 +5,7 @@ import { GetStarshipService } from '../../Services/get-starship.service';
 import { DecimalPipe } from '@angular/common';
 import { PilotsComponent } from "../pilots/pilots.component";
 import { FilmsComponent } from "../films/films.component";
+import { Starship } from '../../models/starship.model';
 
 
 @Component({
@@ -30,11 +31,9 @@ export class StarshipComponent implements OnInit {
   }
 
   getStarshipDetails(id: number): void {
-    if (this.isLoading) return; 
     this.isLoading = true;
-  
     this.getStarshipService.getStarship(id).subscribe({
-      next: (data: any) => {
+      next: (data: Starship) => {
         this.starship = data;
         this.isLoading = false;
       },

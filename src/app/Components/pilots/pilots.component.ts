@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
-import { forkJoin, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { GetStarshipService } from '../../Services/get-starship.service';
-import { Starship } from '../../models/starship.model';
 import { Pilot } from '../../models/pilots.model';
-import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -16,40 +13,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PilotsComponent {
 
-  starship: Starship | null = null;
+  @Input() pilotUrls: string[] = [];
   pilots: Pilot[] = [];
   errorMessage: string | null = null;
 
   constructor(
-    private route: ActivatedRoute,
     private getStarshipsService: GetStarshipService
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const starshipId = +params.get('id')!;
-        return this.getStarshipsService.getStarship(starshipId);
-      }),
-      switchMap(starship => {
-        this.starship = starship;
+    if (this.pilotUrls.length === 0) return;
 
-        if (!starship.pilots || starship.pilots.length === 0) {
-          return of([]); 
-        }
+    const pilotObservables = this.pilotUrls.map(url =>
+      this.getStarshipsService.getPilot(url)
+    );
 
-        const pilotObservables = starship.pilots.map(pilotUrl =>
-          this.getStarshipsService.getPilot(pilotUrl)
-        );
-
-        return forkJoin(pilotObservables);
-      })
-    ).subscribe({
+    forkJoin(pilotObservables).subscribe({
       next: (pilots) => {
         this.pilots = pilots.filter((pilot): pilot is Pilot => !!pilot);
       },
       error: (error) => {
-        this.errorMessage = 'Failed to load starship or pilot details';
+        this.errorMessage = 'Failed to load pilot details';
         console.error(error);
       }
     });

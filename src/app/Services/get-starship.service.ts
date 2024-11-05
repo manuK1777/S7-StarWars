@@ -13,6 +13,7 @@ import { Film } from '../models/films.model';
 export class GetStarshipService {
 
   private apiUrl = 'https://swapi.dev/api/starships/';
+  private starshipData: { [id: number]: Starship } = {};
 
   constructor(private http: HttpClient) {}
 
@@ -73,7 +74,6 @@ export class GetStarshipService {
     );
   }
   
-
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
 

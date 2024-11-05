@@ -1,57 +1,59 @@
-
 @if (starship) {
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-       <div class="container">
-            <div class="row">
-                
-                    <header class="cust-starship-header mb-4">
-                        <h5 class="mt-2">STARSHIP</h5>
-                    </header>
-                
+    <div class="container">
+        <div class="row">
+
+            <header class="cust-starship-header mb-4">
+                <h5 class="mt-2">STARSHIP</h5>
+            </header>
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                @if(starship) {
+
+                <img [src]="getImageUrl()" onerror="this.src='assets/img/default-image.jpg'" width="500px"
+                    alt="Starship Image"> }
             </div>
-    
-            <div class="row">
-                <div class="col">
-                    @if(starship) {
-                  
-                    <img [src]="getImageUrl()" onerror="this.src='assets/img/default-image.jpg'" width="500px" alt="Starship Image">            }
-                </div>
-                <div class="col starship-info-col">
-                    <h5>{{ starship.name | uppercase }}</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Saepe deleniti reiciendis odit dolorem omnis? Dolorem minus, 
-                        esse ex iste ipsam molestiae distinctio.
-                    </p>
-                    <p>Model: {{ starship.model }}</p>
-                    <p>Cost in credits: {{ formatCostInCredits(starship.cost_in_credits) }}</p>               
-                     <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
-                    <p>Manufacturer: {{ starship.manufacturer }}</p>
-                     <p>length: {{ starship?.length }}</p> 
-                    <p>Crew: {{starship.crew}}</p>
-                </div>
+            <div class="col starship-info-col">
+                <h5>{{ starship.name | uppercase }}</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Saepe deleniti reiciendis odit dolorem omnis? Dolorem minus,
+                    esse ex iste ipsam molestiae distinctio.
+                </p>
+                <p>Model: {{ starship.model }}</p>
+                <p>Cost in credits: {{ formatCostInCredits(starship.cost_in_credits) }}</p>
+                <p>Atmospheric speed: {{starship.atmospheric_speed}}</p>
+                <p>Manufacturer: {{ starship.manufacturer }}</p>
+                <p>length: {{ starship?.length }}</p>
+                <p>Crew: {{starship.crew}}</p>
             </div>
+        </div>
 
-           <app-pilots></app-pilots>
-
-           <app-films></app-films>
-
-       </div>
-    </div>  
+        @if (starship.pilots) {
+            <app-pilots [pilotUrls]="starship.pilots"></app-pilots>
+        }
+           
+        @if (starship.films) {
+            <app-films [filmUrls]="starship.films"></app-films>
+        }
+            
+    </div>
+</div>
 
 } @else if (isLoading) {
-   
-        <div>
-          Loading starships...
-        </div>
-        
+
+<div>
+    Loading starships...
+</div>
+
 }
 
 @if (errorMessage) {
-    <div>
-      {{ errorMessage }}
-    </div>
-    }
-
-   
+<div>
+    {{ errorMessage }}
+</div>
+}

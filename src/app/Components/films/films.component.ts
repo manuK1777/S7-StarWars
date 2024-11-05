@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
-import { forkJoin, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { GetStarshipService } from '../../Services/get-starship.service';
-import { Starship } from '../../models/starship.model';
-import { ActivatedRoute } from '@angular/router';
 import { Film } from '../../models/films.model';
 
 @Component({
@@ -15,40 +12,27 @@ import { Film } from '../../models/films.model';
 })
 export class FilmsComponent {
 
-  starship: Starship | null = null;
+  @Input() filmUrls: string[] = [];
   films: Film[] = [];
   errorMessage: string | null = null;
 
   constructor(
-    private route: ActivatedRoute,
     private getStarshipsService: GetStarshipService
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const starshipId = +params.get('id')!;
-        return this.getStarshipsService.getStarship(starshipId);
-      }),
-      switchMap(starship => {
-        this.starship = starship;
+    if (this.filmUrls.length === 0) return;
 
-        if (!starship.films || starship.films.length === 0) {
-          return of([]); 
-        }
+    const filmObservables = this.filmUrls.map(url =>
+      this.getStarshipsService.getFilm(url)
+    );
 
-        const filmObservables = starship.films.map((filmUrl: string) =>
-          this.getStarshipsService.getFilm(filmUrl)
-        );
-
-        return forkJoin(filmObservables);
-      })
-    ).subscribe({
-      next: (films: (Film | null)[]) => {
-        this.films = films.filter(film => film !== null) as Film[];
+    forkJoin(filmObservables).subscribe({
+      next: (films) => {
+        this.films = films.filter((film): film is Film => !!film);
       },
       error: (error) => {
-        this.errorMessage = 'Failed to load starship or film details';
+        this.errorMessage = 'Failed to load film details';
         console.error(error);
       }
     });

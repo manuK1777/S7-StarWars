@@ -44,7 +44,6 @@ export class LoginComponent {
       console.error('Login form is invalid');
     }
   }
-
   navigateToStarships(): void {
     this.router.navigate(['/starships']);
   }

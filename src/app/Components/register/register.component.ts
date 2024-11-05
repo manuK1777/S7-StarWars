@@ -3,6 +3,7 @@ import { AuthService } from '../../Services/auth.service';
 import { User } from '../../models/user.model';
 import { RouterLink, RouterLinkActive, RouterOutlet, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
 
 
 
@@ -23,6 +24,8 @@ export class RegisterComponent {
     password: '',
   };
 
+  registrationError: any;
+
   constructor(private authService: AuthService, private formBuilder: FormBuilder, 
     private router: Router ) {
 
@@ -37,32 +40,27 @@ onSubmit() {
   if (this.registrationForm.valid) {
     const formData: User = this.registrationForm.value;
 
-    this.authService.checkEmailExists(formData.email).subscribe({
-      next: (users) => {
-      
-        if (users.length > 0) { 
-          console.error('Email already registered');
-          alert('This email is already registered. Please use a different one.');
-
+    this.authService.checkEmailExists(formData.email).pipe(
+      switchMap((users) => {
+        if (users.length > 0) {
+          throw new Error('Email already registered');
         } else {
-
-          this.authService.registerUser(formData).subscribe({
-            next: (response) => {
-              console.log('Registration successful', response);
-              alert('User registered successfully!');
-              this.router.navigate(['/login']);
-            },
-            error: (error) => {
-              console.error('Error during registration', error);
-            },
-            complete: () => {
-              console.log('Registration completed');
-            }
-          });
+          return this.authService.registerUser(formData);
         }
+      }),
+      switchMap((response) => {
+        console.log('Registration successful', response);
+        alert('User registered successfully!');
+        return this.authService.loginUser(formData);
+      })
+    ).subscribe({
+      next: (response) => {
+        console.log('Login successful', response);
+        this.router.navigate(['/home']);
       },
       error: (error) => {
-        console.error('Error checking email', error);
+        console.error('Error during registration or login', error);
+        this.registrationError = error.message;
       }
     });
   } else {

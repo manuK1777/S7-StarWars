@@ -13,7 +13,7 @@
         <div class="row d-flex justify-content-center mt-3">
           @for (film of films; track film.url) {
           <div class="film-card">
-            <img [src]="getFilmImageUrl(getFilmIdFromUrl(film.url))" alt="{{ film.title }}" width="180">
+            <img [src]="getFilmImageUrl(getFilmIdFromUrl(film.url))" alt="{{ film.title }}" width="250">
             <p class="mt-2">{{ film.title }}</p>
           </div>
           }
